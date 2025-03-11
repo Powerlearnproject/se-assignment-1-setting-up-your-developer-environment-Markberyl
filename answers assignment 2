@@ -1,0 +1,114 @@
+### Developer Environment Setup on Linux with Visual Studio Code
+
+#### 1. **Choosing the Linux Distribution**
+- **Distribution**: Ubuntu 22.04 LTS
+  - Selected for its user-friendliness and extensive community support.
+
+#### 2. **Initial System Update**
+- Open Terminal:
+  ```bash
+  sudo apt update && sudo apt upgrade -y
+  ```
+  - Ensures the system has the latest security patches and software updates.
+
+#### 3. **Installing Essential Build Tools**
+- Install common development tools:
+  ```bash
+  sudo apt install build-essential curl file git -y
+  ```
+
+#### 4. **Installing Visual Studio Code**
+- **Download and Install:**
+  ```bash
+  sudo apt install software-properties-common apt-transport-https wget -y
+  wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
+  sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+  sudo apt update
+  sudo apt install code -y
+  ```
+
+#### 5. **Configuring Visual Studio Code**
+- **Launch VS Code**:
+  ```bash
+  code
+  ```
+
+- **Essential Extensions**:
+  - Python
+  - C/C++
+  - Live Server
+  - GitLens
+  - Prettier - Code formatter
+  - ESLint
+
+  - Install Extensions:
+    1. Open VS Code.
+    2. Navigate to the Extensions view by clicking on the square icon in the sidebar or using the shortcut `Ctrl+Shift+X`.
+    3. Search for the desired extensions and click `Install`.
+
+#### 6. **Configuring Git**
+- **Setup Git**:
+  ```bash
+  git config --global user.name "Your Name"
+  git config --global user.email "youremail@example.com"
+  ```
+
+#### 7. **Python Development Setup**
+- **Install Python and Pip**:
+  ```bash
+  sudo apt install python3 python3-pip -y
+  ```
+
+- **Set Up Virtual Environment**:
+  ```bash
+  sudo apt install python3-venv -y
+  python3 -m venv myenv
+  source myenv/bin/activate
+  ```
+
+#### 8. **Node.js and NPM Setup**
+- **Install Node.js and NPM**:
+  ```bash
+  curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+  sudo apt install -y nodejs
+  ```
+
+#### 9. **Docker Installation**
+- **Install Docker**:
+  ```bash
+  sudo apt install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+  sudo apt update
+  sudo apt install docker-ce docker-ce-cli containerd.io -y
+  ```
+
+- **Post-Installation Steps**:
+  ```bash
+  sudo groupadd docker
+  sudo usermod -aG docker $USER
+  newgrp docker
+  ```
+
+#### 10. **Configuring VS Code Settings and Preferences**
+- **User Settings**:
+  1. Open VS Code.
+  2. Go to `File > Preferences > Settings`.
+  3. Modify settings as needed, e.g., set default formatter, tab size, etc.
+  ```json
+  {
+      "editor.tabSize": 4,
+      "editor.formatOnSave": true,
+      "files.autoSave": "onFocusChange",
+      "python.pythonPath": "myenv/bin/python",
+      "eslint.enable": true
+  }
+  ```
+
+#### 11. **Troubleshooting Steps**
+- **Common Issues and Solutions**:
+  - **Issue**: VS Code not recognizing Python interpreter.
+    - **Solution**: Ensure the virtual environment is activated and properly set in VS Code settings.
+  - **Issue**: Permission errors with Docker commands.
+    - **Solution**: Verify user is added to the Docker group and restart the system if necessary.
+
